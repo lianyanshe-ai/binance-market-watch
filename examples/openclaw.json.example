@@ -1,0 +1,19 @@
+{
+  "skills": {
+    "load": {
+      "extraDirs": [
+        "~/Projects/binance-market-watch-openclaw/skills"
+      ]
+    },
+    "entries": {
+      "binance-market-watch": {
+        "enabled": true,
+        "env": {
+          "BINANCE_API_KEY": "your_api_key_here",
+          "BINANCE_SECRET_KEY": "your_secret_key_here",
+          "BINANCE_CA_BUNDLE": "/path/to/ca.pem"
+        }
+      }
+    }
+  }
+}

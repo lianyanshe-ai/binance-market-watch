@@ -1,0 +1,7 @@
+interface:
+  display_name: "Binance Market Watch"
+  short_description: "Binance Top10 小时级监控与 Telegram 异动提醒"
+  default_prompt: "Use $binance-market-watch to run an hourly Binance top-10 monitoring scan, detect long/short/margin stress anomalies, and return a Telegram-ready heartbeat, report, or JSON result."
+
+policy:
+  allow_implicit_invocation: true
