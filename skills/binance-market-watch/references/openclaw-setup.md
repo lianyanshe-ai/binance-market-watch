@@ -48,6 +48,8 @@
 
 推荐用 OpenClaw cron 的 `delivery.channel=telegram` 投递，而不是在脚本内直接发 Telegram。
 
+统一后的 `$binance-market-watch` 既可以跑 Top10 小时监控，也可以跑 USDS-M 合约 heartbeat / report。
+
 示例：
 
 ```bash
@@ -61,6 +63,19 @@ openclaw cron add \
   --to "<telegram-chat-id>"
 ```
 
+如果要直接做 USDS-M 合约 heartbeat：
+
+```bash
+openclaw cron add \
+  --name "Binance Futures Heartbeat" \
+  --cron "5 * * * *" \
+  --session isolated \
+  --message "Use $binance-market-watch to run the merged USDS-M futures heartbeat workflow and only reply when anomalies or opportunities appear." \
+  --announce \
+  --channel telegram \
+  --to "<telegram-chat-id>"
+```
+
 如果省略 `--channel` 和 `--to`，OpenClaw 会默认使用最近一次聊天路由。
 
 ## 4. 本地验证
@@ -68,6 +83,7 @@ openclaw cron add \
 ```bash
 python3 {baseDir}/scripts/binance_market_watch.py doctor
 python3 {baseDir}/scripts/binance_market_watch.py scan --format heartbeat --topn 10
+python3 {baseDir}/scripts/binance_usds_futures_advisor.py --format heartbeat --lang zh
 python3 {baseDir}/scripts/binance_market_watch.py state show
 openclaw skills info binance-market-watch
 ```
@@ -108,3 +124,4 @@ V1 发布说明建议明确写清：
 - 这是小时级监控，不是实时交易系统
 - 默认无密钥可运行
 - `margin_stress` 需要 Binance 密钥才能启用增强模式
+- 内置了 Binance USDS-M 合约分析与 heartbeat 能力

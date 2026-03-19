@@ -1,5 +1,9 @@
 # Binance Market Watch V1
 
+本文件只描述 `binance_market_watch.py scan` 这条小时监控工作流。
+
+已并入的 USDS-M 合约分析能力见 `references/usds-futures-endpoints.md`。
+
 ## 目标
 
 V1 固定做三件事：
